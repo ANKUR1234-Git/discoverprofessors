@@ -25,6 +25,14 @@ const getColorFromName = (name: string) => {
   return colors[index];
 };
 
+// Function to get the first letter of the first name (ignoring titles like Dr.)
+const getInitials = (name: string) => {
+  // Remove titles and trim
+  const cleanName = name.replace(/^Dr\.\s+|^Prof\.\s+|^Professor\s+/i, '').trim();
+  // Get first letter of the first name
+  return cleanName.charAt(0);
+};
+
 export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
   const [professors, setProfessors] = useState<Professor[]>([]);
   const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
@@ -56,10 +64,6 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
       case 'non-iits': return 'Professors from Non-IITs';
       default: return 'Professors';
     }
-  };
-
-  const getInitials = (name: string) => {
-    return name.charAt(0);
   };
 
   return (

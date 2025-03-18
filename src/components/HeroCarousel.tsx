@@ -31,6 +31,21 @@ const carouselItems = [
     id: 5,
     title: "Compare Academic Metrics",
     description: "Analyze H-index, citations, and publications across professors."
+  },
+  {
+    id: 6,
+    title: "Interdisciplinary Collaboration",
+    description: "Discover professors working across multiple academic disciplines."
+  },
+  {
+    id: 7,
+    title: "Academic Excellence Beyond STEM",
+    description: "Explore top researchers in arts, humanities, business, and more."
+  },
+  {
+    id: 8,
+    title: "Find Global Academic Leaders",
+    description: "Connect with researchers making worldwide impacts in their fields."
   }
 ];
 
