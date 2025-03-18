@@ -1,16 +1,18 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, GraduationCap, Menu, X } from 'lucide-react';
+import { ChevronDown, GraduationCap, Menu, X, MessageSquare } from 'lucide-react';
 import { SidePanel } from './SidePanel';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Link } from 'react-router-dom';
 
 const navItems = [
-  { name: 'Home', link: '#', category: null },
+  { name: 'Home', link: '/', category: null },
   { name: 'Citations', link: '#', category: 'citations' },
   { name: 'i10 Index', link: '#', category: 'i10-index' },
   { name: 'Publications', link: '#', category: 'publications' },
   { name: 'IITs', link: '#', category: 'iits' },
   { name: 'Non-IITs', link: '#', category: 'non-iits' },
+  { name: 'AI Chat', link: '/ai-chat', category: null },
 ];
 
 export const Navbar = () => {
@@ -19,7 +21,7 @@ export const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
-  const handleNavItemClick = (category: string | null) => {
+  const handleNavItemClick = (category: string | null, link: string) => {
     if (category) {
       setActiveCategory(category);
       setSidePanelOpen(true);
@@ -33,13 +35,13 @@ export const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 w-full z-50 glass-morphism border-b border-white/10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <GraduationCap className="h-8 w-8 text-primary" />
             <h1 className="text-2xl font-bold">
-              <span className="text-white">Discover</span>
-              <span className="text-primary">Professors</span>
+              <span className="text-white">Scholarly</span>
+              <span className="text-primary">AI</span>
             </h1>
-          </div>
+          </Link>
           
           {isMobile ? (
             <button 
@@ -51,14 +53,26 @@ export const Navbar = () => {
           ) : (
             <nav className="flex items-center space-x-6">
               {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavItemClick(item.category)}
-                  className="text-sm font-medium relative px-1 py-2 hover:text-primary transition-colors group"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-                </button>
+                item.category ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavItemClick(item.category, item.link)}
+                    className="text-sm font-medium relative px-1 py-2 hover:text-primary transition-colors group"
+                  >
+                    {item.name}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.link}
+                    className="text-sm font-medium relative px-1 py-2 hover:text-primary transition-colors group"
+                  >
+                    {item.name}
+                    {item.name === 'AI Chat' && <MessageSquare className="ml-1 inline-block h-3 w-3" />}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                  </Link>
+                )
               ))}
             </nav>
           )}
@@ -73,14 +87,25 @@ export const Navbar = () => {
           >
             <nav className="container mx-auto px-4 flex flex-col space-y-4">
               {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavItemClick(item.category)}
-                  className="text-sm font-medium p-2 hover:bg-white/10 rounded-md transition-colors flex justify-between items-center"
-                >
-                  {item.name}
-                  {item.category && <ChevronDown className="h-4 w-4" />}
-                </button>
+                item.category ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavItemClick(item.category, item.link)}
+                    className="text-sm font-medium p-2 hover:bg-white/10 rounded-md transition-colors flex justify-between items-center"
+                  >
+                    {item.name}
+                    {item.category && <ChevronDown className="h-4 w-4" />}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.link}
+                    className="text-sm font-medium p-2 hover:bg-white/10 rounded-md transition-colors flex justify-between items-center"
+                  >
+                    {item.name}
+                    {item.name === 'AI Chat' && <MessageSquare className="h-4 w-4" />}
+                  </Link>
+                )
               ))}
             </nav>
           </div>

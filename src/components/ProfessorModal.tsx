@@ -54,6 +54,8 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
             <button 
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition-colors"
+              aria-label="Close modal"
+              type="button"
             >
               <X className="h-4 w-4" />
             </button>
@@ -66,33 +68,15 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
             
             <div className="relative p-6 sm:p-8 z-10">
               <div className="flex flex-col md:flex-row gap-6">
-                {/* Professor Image */}
-                <div className="w-full md:w-1/3 shrink-0">
-                  <div className="aspect-square rounded-xl overflow-hidden border border-white/20 shadow-lg">
-                    <img 
-                      src={professor.imageUrl} 
-                      alt={professor.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                {/* Professor Details */}
+                <div className="w-full">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">{professor.name}</h2>
                   
                   {/* Institution and Contact */}
-                  <div className="mt-6 space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <Building className="h-4 w-4 text-primary" />
-                      <span className="text-sm">{professor.institution}</span>
-                    </div>
-                    
-                    <button className="w-full py-2.5 bg-primary/90 hover:bg-primary text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2">
-                      <Mail className="h-4 w-4" />
-                      <span>Contact Professor</span>
-                    </button>
+                  <div className="flex items-center space-x-2 mb-4">
+                    <Building className="h-4 w-4 text-primary" />
+                    <span className="text-sm">{professor.institution}</span>
                   </div>
-                </div>
-                
-                {/* Professor Details */}
-                <div className="w-full md:w-2/3">
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">{professor.name}</h2>
                   
                   {/* Metrics */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6">
@@ -132,7 +116,7 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
                   </div>
                   
                   {/* Research Interests */}
-                  <div>
+                  <div className="mb-6">
                     <h3 className="text-lg font-semibold mb-3 flex items-center">
                       <Award className="h-5 w-5 mr-2 text-primary" />
                       Research Interests
@@ -148,6 +132,11 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
                       ))}
                     </div>
                   </div>
+                  
+                  <button className="w-full py-2.5 bg-primary/90 hover:bg-primary text-white font-medium rounded-lg transition-colors flex items-center justify-center space-x-2">
+                    <Mail className="h-4 w-4" />
+                    <span>Contact Professor</span>
+                  </button>
                 </div>
               </div>
             </div>

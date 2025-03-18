@@ -22,10 +22,16 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      {/* Global Background Image */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center z-0 opacity-15" 
+        style={{ backgroundImage: `url('/images/scholarly-background.jpg')` }}
+      ></div>
+      
       <Navbar />
       
-      <main className="pb-20">
+      <main className="pb-20 relative z-10">
         <section className="hero-section py-20 relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
@@ -50,12 +56,12 @@ const Index = () => {
         ))}
       </main>
       
-      <footer className="border-t border-white/10 py-8 bg-background">
+      <footer className="border-t border-white/10 py-8 bg-background/80 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-sm text-gray-400">
-                © {new Date().getFullYear()} DiscoverProfessors. All rights reserved.
+                © {new Date().getFullYear()} ScholarlyAI. All rights reserved.
               </p>
             </div>
             <div className="flex space-x-6">
