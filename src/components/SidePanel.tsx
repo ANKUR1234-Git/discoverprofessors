@@ -5,12 +5,25 @@ import { getProfessorsByCategory } from '@/utils/professorData';
 import { ProfessorModal } from './ProfessorModal';
 import type { Professor } from '@/utils/professorData';
 import { staggeredEntrance } from '@/utils/animations';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface SidePanelProps {
   isOpen: boolean;
   onClose: () => void;
   category: string;
 }
+
+// Function to generate colors based on name
+const getColorFromName = (name: string) => {
+  const colors = [
+    'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 
+    'bg-red-500', 'bg-purple-500', 'bg-pink-500', 
+    'bg-indigo-500', 'bg-teal-500', 'bg-orange-500'
+  ];
+  
+  const index = name.charCodeAt(0) % colors.length;
+  return colors[index];
+};
 
 export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
   const [professors, setProfessors] = useState<Professor[]>([]);
@@ -45,12 +58,16 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
     }
   };
 
+  const getInitials = (name: string) => {
+    return name.charAt(0);
+  };
+
   return (
     <>
       {/* Backdrop */}
       {isOpen && (
         <div 
-          className="panel-backdrop"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
           onClick={onClose}
           style={{ 
             opacity: isOpen ? 1 : 0,
@@ -85,14 +102,11 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
                   onClick={() => handleProfessorClick(professor)}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden shrink-0">
-                      <img 
-                        src={professor.imageUrl} 
-                        alt={professor.name} 
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+                    <Avatar className={`w-12 h-12 ${getColorFromName(professor.name)}`}>
+                      <AvatarFallback className="text-white">
+                        {getInitials(professor.name)}
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-base font-medium truncate">{professor.name}</h3>
                       <p className="text-sm text-gray-400 truncate">{professor.institution}</p>

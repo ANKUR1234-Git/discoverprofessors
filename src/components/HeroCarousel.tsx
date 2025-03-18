@@ -46,23 +46,24 @@ export const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden">
-      <Carousel opts={{ loop: true }} className="w-full">
-        <CarouselContent>
-          {carouselItems.map((item, index) => (
-            <CarouselItem key={item.id} className={`min-h-[200px] ${index === currentSlide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 absolute inset-0`}>
-              <div className="max-w-3xl mx-auto text-center">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  <span className="gradient-text">{item.title}</span>
-                </h1>
-                <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+    <div className="w-full relative overflow-hidden min-h-[300px]">
+      {carouselItems.map((item, index) => (
+        <div 
+          key={item.id} 
+          className={`transition-opacity duration-1000 absolute inset-0 ${
+            index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          }`}
+        >
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="gradient-text">{item.title}</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

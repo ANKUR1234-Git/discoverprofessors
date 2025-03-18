@@ -27,7 +27,7 @@ const Index = () => {
       {/* Global Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center z-0 opacity-15" 
-        style={{ backgroundImage: `url('/images/scholarly-background.jpg')` }}
+        style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/thumbnails/006/817/039/small_2x/educational-equipment-boards-and-books-education-concept-with-copy-space-photo.jpg')` }}
       ></div>
       
       <Navbar />
