@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { DepartmentSection } from '@/components/DepartmentSection';
+import { HeroCarousel } from '@/components/HeroCarousel';
 import { departments } from '@/utils/professorData';
 
 const Index = () => {
@@ -34,16 +35,7 @@ const Index = () => {
       <main className="pb-20 relative z-10">
         <section className="hero-section py-20 relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Discover Top Professors <br className="hidden sm:block" />
-                <span className="gradient-text">Across India</span>
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                Find and connect with leading academic experts in various fields based on 
-                research metrics, publications, and institutional affiliations.
-              </p>
-            </div>
+            <HeroCarousel />
           </div>
           
           {/* Background Gradient */}

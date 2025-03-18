@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Professor } from '@/utils/professorData';
 import { ProfessorModal } from './ProfessorModal';
 import { Award, BookOpen, Users } from 'lucide-react';
@@ -11,12 +12,13 @@ interface ProfessorCardProps {
 
 export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   
   if (isShowAll) {
     return (
       <div 
         className="professor-card card-hover h-80 rounded-xl bg-secondary/30 flex flex-col items-center justify-center cursor-pointer"
-        onClick={() => window.location.href = '#all-professors'}
+        onClick={() => navigate(`/department/${professor.departmentId}`)}
       >
         <div className="relative w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
           <span className="text-2xl font-bold text-primary">+</span>
