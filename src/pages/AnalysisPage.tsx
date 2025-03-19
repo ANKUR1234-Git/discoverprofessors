@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
@@ -115,12 +114,10 @@ const AnalysisPage = () => {
   const [animatedMetric, setAnimatedMetric] = useState(0);
   
   useEffect(() => {
-    // Scroll to top when the component mounts
     window.scrollTo(0, 0);
     
     document.body.style.paddingTop = '72px';
     
-    // Set data based on analysis type
     switch(analysisType) {
       case 'citations':
         setChartData(citationsData);
@@ -143,12 +140,10 @@ const AnalysisPage = () => {
         setSummaryMetric(0);
     }
     
-    // Apply staggered animation to chart elements
     setTimeout(() => {
       staggeredEntrance('.chart-item', 120);
     }, 300);
     
-    // Animated counter for the summary metric
     const counterElement = document.getElementById('summary-counter');
     if (counterElement) {
       animateNumber(counterElement, 0, summaryMetric, 2000);
@@ -187,7 +182,6 @@ const AnalysisPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      {/* Global Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center z-0 opacity-15" 
         style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/thumbnails/006/817/039/small_2x/educational-equipment-boards-and-books-education-concept-with-copy-space-photo.jpg')` }}
@@ -206,7 +200,6 @@ const AnalysisPage = () => {
           <h1 className="text-3xl font-bold">{getPageTitle()}</h1>
         </div>
         
-        {/* Summary Card */}
         <div className="bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6 mb-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
@@ -221,9 +214,7 @@ const AnalysisPage = () => {
           </div>
         </div>
         
-        {/* Charts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Primary Chart */}
           <div className="chart-item opacity-0 transform translate-y-8 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Primary Metrics</h3>
             <ChartContainer
@@ -246,7 +237,6 @@ const AnalysisPage = () => {
             </ChartContainer>
           </div>
           
-          {/* Secondary Chart */}
           <div className="chart-item opacity-0 transform translate-y-8 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Trend Analysis</h3>
             <ChartContainer
@@ -272,7 +262,6 @@ const AnalysisPage = () => {
             </ChartContainer>
           </div>
           
-          {/* Area Chart */}
           <div className="chart-item opacity-0 transform translate-y-8 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Historical Data</h3>
             <ChartContainer
@@ -297,7 +286,6 @@ const AnalysisPage = () => {
             </ChartContainer>
           </div>
           
-          {/* Stacked Bar Chart */}
           <div className="chart-item opacity-0 transform translate-y-8 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Comparative Analysis</h3>
             <ChartContainer

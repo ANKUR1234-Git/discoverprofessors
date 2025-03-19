@@ -1,19 +1,19 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, GraduationCap, Menu, X, MessageSquare, Home } from 'lucide-react';
+import { ChevronDown, GraduationCap, Menu, X } from 'lucide-react';
 import { SidePanel } from './SidePanel';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
 
 const navItems = [
-  { name: 'Dashboard', link: '/', category: null, icon: <Home className="ml-1 inline-block h-3 w-3" /> },
+  { name: 'Dashboard', link: '/', category: null },
   { name: 'Home', link: '/home', category: null },
   { name: 'Citations', link: '#', category: 'citations' },
   { name: 'i10 Index', link: '#', category: 'i10-index' },
   { name: 'Publications', link: '#', category: 'publications' },
   { name: 'IITs', link: '#', category: 'iits' },
   { name: 'Non-IITs', link: '#', category: 'non-iits' },
-  { name: 'AI Chat', link: '/ai-chat', category: null, icon: <MessageSquare className="ml-1 inline-block h-3 w-3" /> },
+  { name: 'AI Chat', link: '/ai-chat', category: null },
 ];
 
 export const Navbar = () => {
@@ -70,7 +70,6 @@ export const Navbar = () => {
                     className="text-sm font-medium relative px-1 py-2 hover:text-primary transition-colors group"
                   >
                     {item.name}
-                    {item.icon}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                   </Link>
                 )
@@ -104,7 +103,6 @@ export const Navbar = () => {
                     className="text-sm font-medium p-2 hover:bg-white/10 rounded-md transition-colors flex justify-between items-center"
                   >
                     {item.name}
-                    {item.icon && <span className="h-4 w-4">{item.icon}</span>}
                   </Link>
                 )
               ))}
