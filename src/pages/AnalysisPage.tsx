@@ -115,6 +115,9 @@ const AnalysisPage = () => {
   const [animatedMetric, setAnimatedMetric] = useState(0);
   
   useEffect(() => {
+    // Scroll to top when the component mounts
+    window.scrollTo(0, 0);
+    
     document.body.style.paddingTop = '72px';
     
     // Set data based on analysis type

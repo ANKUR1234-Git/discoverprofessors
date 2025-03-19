@@ -75,9 +75,14 @@ const Dashboard = () => {
     const carouselIntervals = Array.from(emblaNodes).map((node, index) => {
       return setInterval(() => {
         const embla = node as HTMLElement;
-        if (embla.parentElement) {
+        if (embla && embla.parentElement) {
           const scrollAmount = embla.parentElement.clientWidth * 0.33;
-          embla.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          embla.scrollLeft += scrollAmount;
+          
+          // If near the end, reset to start
+          if (embla.scrollLeft > (embla.scrollWidth - embla.parentElement.clientWidth - 100)) {
+            embla.scrollLeft = 0;
+          }
         }
       }, 5000 + (index * 1000)); // Stagger the intervals
     });
