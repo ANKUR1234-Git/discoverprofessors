@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Professor, Department, getTopProfessorsByDepartment, getAllProfessorsByDepartment } from '@/utils/professorData';
 import { ProfessorCard } from './ProfessorCard';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Link } from 'react-router-dom';
 
 interface DepartmentSectionProps {
   department: Department;
@@ -71,7 +72,12 @@ export const DepartmentSection = ({ department }: DepartmentSectionProps) => {
           ))}
           
           <div className="w-[280px] shrink-0 snap-start">
-            <ProfessorCard isShowAll professor={topProfessors[0]} />
+            <Link 
+              to={`/department/${department.id}`} 
+              state={{ from: 'home' }}
+            >
+              <ProfessorCard isShowAll professor={topProfessors[0]} />
+            </Link>
           </div>
         </div>
       </div>

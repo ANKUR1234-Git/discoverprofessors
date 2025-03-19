@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { ProfessorCard } from '@/components/ProfessorCard';
 import { getAllProfessorsByDepartment, departments } from '@/utils/professorData';
@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 const GridView = () => {
   const { departmentId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [professors, setProfessors] = useState([]);
   
   useEffect(() => {
@@ -21,10 +22,22 @@ const GridView = () => {
       setProfessors(allProfessors);
     }
     
+    // Reset scroll position to top
+    window.scrollTo(0, 0);
+    
     return () => {
       document.body.style.paddingTop = '0';
     };
   }, [departmentId]);
+  
+  const handleBackClick = () => {
+    // If we have state with a previousPath, use that
+    if (location.state?.from === 'home') {
+      navigate('/home');
+    } else {
+      navigate('/');
+    }
+  };
   
   const department = departments.find(d => d.id === departmentId);
   
@@ -43,7 +56,7 @@ const GridView = () => {
           <Button 
             variant="ghost" 
             className="mr-3" 
-            onClick={() => navigate('/')}
+            onClick={handleBackClick}
           >
             <ArrowLeft className="h-5 w-5 mr-1" />
             Back
