@@ -9,41 +9,46 @@ import {
 const carouselItems = [
   {
     id: 1,
+    title: "Dashboard: Visualize The Citation Impact",
+    description: "Track, analyze, and discover the impact of academic research."
+  },
+  {
+    id: 2,
     title: "Discover Top Professors Across India",
     description: "Find and connect with leading academic experts in various fields."
   },
   {
-    id: 2,
+    id: 3,
     title: "Explore Research Excellence",
     description: "Access professors with the highest research impact and citations."
   },
   {
-    id: 3,
+    id: 4,
     title: "Find Your Academic Mentor",
     description: "Connect with professors who align with your research interests."
   },
   {
-    id: 4,
+    id: 5,
     title: "Stay Updated with Latest Research",
     description: "Discover the most cited and influential papers in your field."
   },
   {
-    id: 5,
+    id: 6,
     title: "Compare Academic Metrics",
     description: "Analyze H-index, citations, and publications across professors."
   },
   {
-    id: 6,
+    id: 7,
     title: "Interdisciplinary Collaboration",
     description: "Discover professors working across multiple academic disciplines."
   },
   {
-    id: 7,
+    id: 8,
     title: "Academic Excellence Beyond STEM",
     description: "Explore top researchers in arts, humanities, business, and more."
   },
   {
-    id: 8,
+    id: 9,
     title: "Find Global Academic Leaders",
     description: "Connect with researchers making worldwide impacts in their fields."
   }

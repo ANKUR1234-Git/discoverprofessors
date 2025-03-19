@@ -21,7 +21,9 @@ const getColorFromName = (name: string) => {
     'bg-indigo-500', 'bg-teal-500', 'bg-orange-500'
   ];
   
-  const index = name.charCodeAt(0) % colors.length;
+  // Use the first letter of the name (after removing titles) to determine the color
+  const cleanName = name.replace(/^Dr\.\s+|^Prof\.\s+|^Professor\s+/i, '').trim();
+  const index = cleanName.charCodeAt(0) % colors.length;
   return colors[index];
 };
 
