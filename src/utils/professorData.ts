@@ -1,3 +1,4 @@
+
 export interface Professor {
   id: string;
   name: string;
@@ -433,6 +434,438 @@ export const professors: Professor[] = [
     citations: 4098,
     bio: "Dr. Vivek Choudhary is a Professor at the Department of Chemical Engineering, IIT Delhi. His research focuses on process control and optimization.",
     researchInterests: ["Process Control", "Optimization", "Process Systems Engineering", "Modeling and Simulation"]
+  },
+  
+  // Physics
+  {
+    id: "physics-1",
+    name: "Dr. Ashok Patel",
+    institution: "IIT Bombay",
+    department: "physics",
+    departmentId: "physics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,16",
+    hIndex: 40,
+    i10Index: 82,
+    publications: 215,
+    citations: 5632,
+    bio: "Dr. Ashok Patel is a Professor at the Department of Physics, IIT Bombay. His research focuses on condensed matter physics and quantum materials.",
+    researchInterests: ["Condensed Matter Physics", "Quantum Materials", "Superconductivity", "Magnetism"]
+  },
+  {
+    id: "physics-2",
+    name: "Dr. Sudha Mehta",
+    institution: "IIT Delhi",
+    department: "physics",
+    departmentId: "physics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,11",
+    hIndex: 38,
+    i10Index: 76,
+    publications: 192,
+    citations: 5248,
+    bio: "Dr. Sudha Mehta is a Professor at the Department of Physics, IIT Delhi. She specializes in high energy physics and particle accelerators.",
+    researchInterests: ["High Energy Physics", "Particle Physics", "Accelerator Physics", "Detectors"]
+  },
+  {
+    id: "physics-3",
+    name: "Dr. Ramachandran K.",
+    institution: "IIT Madras",
+    department: "physics",
+    departmentId: "physics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,17",
+    hIndex: 42,
+    i10Index: 87,
+    publications: 230,
+    citations: 6124,
+    bio: "Dr. Ramachandran K. is a Professor at the Department of Physics, IIT Madras. His research interests include astrophysics and cosmology.",
+    researchInterests: ["Astrophysics", "Cosmology", "Gravitational Waves", "Dark Matter"]
+  },
+  {
+    id: "physics-4",
+    name: "Dr. Anita Sharma",
+    institution: "IIT Kanpur",
+    department: "physics",
+    departmentId: "physics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,12",
+    hIndex: 36,
+    i10Index: 74,
+    publications: 178,
+    citations: 4876,
+    bio: "Dr. Anita Sharma is an Associate Professor at the Department of Physics, IIT Kanpur. She specializes in optical physics and quantum optics.",
+    researchInterests: ["Optical Physics", "Quantum Optics", "Lasers", "Photonics"]
+  },
+  {
+    id: "physics-5",
+    name: "Dr. Venkatesh Iyer",
+    institution: "IIT Roorkee",
+    department: "physics",
+    departmentId: "physics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,18",
+    hIndex: 34,
+    i10Index: 69,
+    publications: 165,
+    citations: 4532,
+    bio: "Dr. Venkatesh Iyer is a Professor at the Department of Physics, IIT Roorkee. His research focuses on nuclear physics and radiation detectors.",
+    researchInterests: ["Nuclear Physics", "Radiation Detectors", "Nuclear Instrumentation", "Medical Physics"]
+  },
+  
+  // Mathematics
+  {
+    id: "math-1",
+    name: "Dr. Sameer Mathur",
+    institution: "IIT Kanpur",
+    department: "mathematics",
+    departmentId: "mathematics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,19",
+    hIndex: 32,
+    i10Index: 65,
+    publications: 154,
+    citations: 4125,
+    bio: "Dr. Sameer Mathur is a Professor at the Department of Mathematics, IIT Kanpur. His research focuses on algebraic geometry and number theory.",
+    researchInterests: ["Algebraic Geometry", "Number Theory", "Elliptic Curves", "Modular Forms"]
+  },
+  {
+    id: "math-2",
+    name: "Dr. Jayashree Ramakrishnan",
+    institution: "IIT Madras",
+    department: "mathematics",
+    departmentId: "mathematics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,13",
+    hIndex: 30,
+    i10Index: 61,
+    publications: 142,
+    citations: 3865,
+    bio: "Dr. Jayashree Ramakrishnan is a Professor at the Department of Mathematics, IIT Madras. She specializes in analysis and differential equations.",
+    researchInterests: ["Analysis", "Differential Equations", "Dynamical Systems", "Mathematical Modeling"]
+  },
+  {
+    id: "math-3",
+    name: "Dr. Harish Verma",
+    institution: "IIT Delhi",
+    department: "mathematics",
+    departmentId: "mathematics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,20",
+    hIndex: 35,
+    i10Index: 72,
+    publications: 168,
+    citations: 4567,
+    bio: "Dr. Harish Verma is a Professor at the Department of Mathematics, IIT Delhi. His research interests include topology and geometric analysis.",
+    researchInterests: ["Topology", "Geometric Analysis", "Differential Geometry", "Riemannian Geometry"]
+  },
+  {
+    id: "math-4",
+    name: "Dr. Nirmala Devi",
+    institution: "IIT Bombay",
+    department: "mathematics",
+    departmentId: "mathematics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,14",
+    hIndex: 29,
+    i10Index: 59,
+    publications: 136,
+    citations: 3654,
+    bio: "Dr. Nirmala Devi is an Associate Professor at the Department of Mathematics, IIT Bombay. She specializes in algebra and representation theory.",
+    researchInterests: ["Algebra", "Representation Theory", "Group Theory", "Ring Theory"]
+  },
+  {
+    id: "math-5",
+    name: "Dr. Rajendra Prasad",
+    institution: "IIT Roorkee",
+    department: "mathematics",
+    departmentId: "mathematics",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,21",
+    hIndex: 27,
+    i10Index: 55,
+    publications: 128,
+    citations: 3421,
+    bio: "Dr. Rajendra Prasad is a Professor at the Department of Mathematics, IIT Roorkee. His research focuses on numerical analysis and computational mathematics.",
+    researchInterests: ["Numerical Analysis", "Computational Mathematics", "Scientific Computing", "Approximation Theory"]
+  },
+  
+  // Arts & Humanities
+  {
+    id: "arts-1",
+    name: "Dr. Aruna Sharma",
+    institution: "Delhi University",
+    department: "arts",
+    departmentId: "arts",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,15",
+    hIndex: 22,
+    i10Index: 45,
+    publications: 110,
+    citations: 2865,
+    bio: "Dr. Aruna Sharma is a Professor at the Department of English, Delhi University. Her research focuses on postcolonial literature and cultural studies.",
+    researchInterests: ["Postcolonial Literature", "Cultural Studies", "Indian Writing in English", "Gender Studies"]
+  },
+  {
+    id: "arts-2",
+    name: "Dr. Vikrant Pandey",
+    institution: "Jawaharlal Nehru University",
+    department: "arts",
+    departmentId: "arts",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,22",
+    hIndex: 24,
+    i10Index: 49,
+    publications: 118,
+    citations: 3012,
+    bio: "Dr. Vikrant Pandey is a Professor at the Department of History, Jawaharlal Nehru University. He specializes in ancient Indian history and archaeology.",
+    researchInterests: ["Ancient Indian History", "Archaeology", "Historiography", "Material Culture"]
+  },
+  {
+    id: "arts-3",
+    name: "Dr. Meenakshi Reddy",
+    institution: "University of Hyderabad",
+    department: "arts",
+    departmentId: "arts",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,16",
+    hIndex: 20,
+    i10Index: 42,
+    publications: 95,
+    citations: 2567,
+    bio: "Dr. Meenakshi Reddy is a Professor at the Department of Philosophy, University of Hyderabad. Her research interests include Indian philosophy and ethics.",
+    researchInterests: ["Indian Philosophy", "Ethics", "Comparative Philosophy", "Philosophy of Mind"]
+  },
+  {
+    id: "arts-4",
+    name: "Dr. Rajesh Khanna",
+    institution: "Banaras Hindu University",
+    department: "arts",
+    departmentId: "arts",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,23",
+    hIndex: 18,
+    i10Index: 38,
+    publications: 88,
+    citations: 2245,
+    bio: "Dr. Rajesh Khanna is an Associate Professor at the Department of Sociology, Banaras Hindu University. He specializes in social movements and rural sociology.",
+    researchInterests: ["Social Movements", "Rural Sociology", "Development Studies", "Indian Society"]
+  },
+  {
+    id: "arts-5",
+    name: "Dr. Sharmila Banerjee",
+    institution: "Jadavpur University",
+    department: "arts",
+    departmentId: "arts",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,17",
+    hIndex: 21,
+    i10Index: 43,
+    publications: 102,
+    citations: 2698,
+    bio: "Dr. Sharmila Banerjee is a Professor at the Department of Comparative Literature, Jadavpur University. Her research focuses on literary theory and translation studies.",
+    researchInterests: ["Literary Theory", "Translation Studies", "Comparative Literature", "World Literature"]
+  },
+  
+  // Business Management
+  {
+    id: "business-1",
+    name: "Dr. Rajiv Malhotra",
+    institution: "IIM Ahmedabad",
+    department: "business",
+    departmentId: "business",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,24",
+    hIndex: 29,
+    i10Index: 60,
+    publications: 145,
+    citations: 3876,
+    bio: "Dr. Rajiv Malhotra is a Professor at the Department of Strategy, IIM Ahmedabad. His research focuses on strategic management and competitive advantage.",
+    researchInterests: ["Strategic Management", "Competitive Advantage", "Corporate Strategy", "Business Models"]
+  },
+  {
+    id: "business-2",
+    name: "Dr. Priyanka Singh",
+    institution: "IIM Bangalore",
+    department: "business",
+    departmentId: "business",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,18",
+    hIndex: 27,
+    i10Index: 56,
+    publications: 132,
+    citations: 3654,
+    bio: "Dr. Priyanka Singh is a Professor at the Department of Finance, IIM Bangalore. She specializes in financial markets and corporate finance.",
+    researchInterests: ["Financial Markets", "Corporate Finance", "Investment Analysis", "Financial Risk Management"]
+  },
+  {
+    id: "business-3",
+    name: "Dr. Arun Kapoor",
+    institution: "IIM Calcutta",
+    department: "business",
+    departmentId: "business",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,25",
+    hIndex: 26,
+    i10Index: 53,
+    publications: 128,
+    citations: 3421,
+    bio: "Dr. Arun Kapoor is a Professor at the Department of Marketing, IIM Calcutta. His research interests include consumer behavior and digital marketing.",
+    researchInterests: ["Consumer Behavior", "Digital Marketing", "Brand Management", "Market Research"]
+  },
+  {
+    id: "business-4",
+    name: "Dr. Sunita Jain",
+    institution: "XLRI Jamshedpur",
+    department: "business",
+    departmentId: "business",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,19",
+    hIndex: 24,
+    i10Index: 49,
+    publications: 118,
+    citations: 3156,
+    bio: "Dr. Sunita Jain is an Associate Professor at the Department of Human Resources, XLRI Jamshedpur. She specializes in organizational behavior and leadership.",
+    researchInterests: ["Organizational Behavior", "Leadership", "Human Resource Management", "Talent Management"]
+  },
+  {
+    id: "business-5",
+    name: "Dr. Manish Gupta",
+    institution: "IIM Lucknow",
+    department: "business",
+    departmentId: "business",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,26",
+    hIndex: 23,
+    i10Index: 47,
+    publications: 112,
+    citations: 2987,
+    bio: "Dr. Manish Gupta is a Professor at the Department of Operations, IIM Lucknow. His research focuses on supply chain management and operations research.",
+    researchInterests: ["Supply Chain Management", "Operations Research", "Service Operations", "Project Management"]
+  },
+  
+  // Medical Sciences
+  {
+    id: "med-1",
+    name: "Dr. Sudhir Mehta",
+    institution: "AIIMS Delhi",
+    department: "medicine",
+    departmentId: "medicine",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,27",
+    hIndex: 45,
+    i10Index: 92,
+    publications: 228,
+    citations: 6754,
+    bio: "Dr. Sudhir Mehta is a Professor at the Department of Internal Medicine, AIIMS Delhi. His research focuses on cardiovascular diseases and preventive cardiology.",
+    researchInterests: ["Cardiovascular Diseases", "Preventive Cardiology", "Hypertension", "Clinical Trials"]
+  },
+  {
+    id: "med-2",
+    name: "Dr. Anita Desai",
+    institution: "AIIMS Bangalore",
+    department: "medicine",
+    departmentId: "medicine",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,20",
+    hIndex: 42,
+    i10Index: 86,
+    publications: 215,
+    citations: 6321,
+    bio: "Dr. Anita Desai is a Professor at the Department of Neurology, AIIMS Bangalore. She specializes in neurological disorders and neuroscience.",
+    researchInterests: ["Neurological Disorders", "Neuroscience", "Stroke", "Epilepsy"]
+  },
+  {
+    id: "med-3",
+    name: "Dr. Ramesh Kumar",
+    institution: "CMC Vellore",
+    department: "medicine",
+    departmentId: "medicine",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,28",
+    hIndex: 40,
+    i10Index: 82,
+    publications: 198,
+    citations: 5932,
+    bio: "Dr. Ramesh Kumar is a Professor at the Department of Surgery, CMC Vellore. His research interests include surgical oncology and minimally invasive surgery.",
+    researchInterests: ["Surgical Oncology", "Minimally Invasive Surgery", "Surgical Techniques", "Clinical Research"]
+  },
+  {
+    id: "med-4",
+    name: "Dr. Sneha Patel",
+    institution: "PGIMER Chandigarh",
+    department: "medicine",
+    departmentId: "medicine",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,21",
+    hIndex: 38,
+    i10Index: 78,
+    publications: 186,
+    citations: 5546,
+    bio: "Dr. Sneha Patel is an Associate Professor at the Department of Pediatrics, PGIMER Chandigarh. She specializes in pediatric infectious diseases and immunology.",
+    researchInterests: ["Pediatric Infectious Diseases", "Immunology", "Vaccines", "Childhood Diseases"]
+  },
+  {
+    id: "med-5",
+    name: "Dr. Vikram Sanyal",
+    institution: "JIPMER Puducherry",
+    department: "medicine",
+    departmentId: "medicine",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,29",
+    hIndex: 36,
+    i10Index: 74,
+    publications: 178,
+    citations: 5123,
+    bio: "Dr. Vikram Sanyal is a Professor at the Department of Community Medicine, JIPMER Puducherry. His research focuses on public health and epidemiology.",
+    researchInterests: ["Public Health", "Epidemiology", "Preventive Medicine", "Health Policy"]
+  },
+  
+  // Non-IIT Professors (additional)
+  {
+    id: "non-iit-1",
+    name: "Dr. Aditya Sharma",
+    institution: "Pune University",
+    department: "cs",
+    departmentId: "cs",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,30",
+    hIndex: 32,
+    i10Index: 65,
+    publications: 156,
+    citations: 4132,
+    bio: "Dr. Aditya Sharma is a Professor at the Department of Computer Science, Pune University. His research focuses on artificial intelligence and machine learning.",
+    researchInterests: ["Artificial Intelligence", "Machine Learning", "Neural Networks", "Computer Vision"]
+  },
+  {
+    id: "non-iit-2",
+    name: "Dr. Kavita Shukla",
+    institution: "Jadavpur University",
+    department: "electrical",
+    departmentId: "electrical",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,22",
+    hIndex: 29,
+    i10Index: 60,
+    publications: 142,
+    citations: 3845,
+    bio: "Dr. Kavita Shukla is a Professor at the Department of Electrical Engineering, Jadavpur University. She specializes in power systems and renewable energy.",
+    researchInterests: ["Power Systems", "Renewable Energy", "Smart Grid", "Energy Management"]
+  },
+  {
+    id: "non-iit-3",
+    name: "Dr. Raman Verma",
+    institution: "Birla Institute of Technology",
+    department: "mechanical",
+    departmentId: "mechanical",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,31",
+    hIndex: 26,
+    i10Index: 53,
+    publications: 128,
+    citations: 3412,
+    bio: "Dr. Raman Verma is a Professor at the Department of Mechanical Engineering, Birla Institute of Technology. His research interests include thermodynamics and energy conversion.",
+    researchInterests: ["Thermodynamics", "Energy Conversion", "Heat Transfer", "Combustion"]
+  },
+  {
+    id: "non-iit-4",
+    name: "Dr. Anjali Menon",
+    institution: "NIT Trichy",
+    department: "civil",
+    departmentId: "civil",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,woman,23",
+    hIndex: 24,
+    i10Index: 49,
+    publications: 118,
+    citations: 3198,
+    bio: "Dr. Anjali Menon is an Associate Professor at the Department of Civil Engineering, NIT Trichy. She specializes in structural engineering and construction materials.",
+    researchInterests: ["Structural Engineering", "Construction Materials", "Sustainable Construction", "Concrete Technology"]
+  },
+  {
+    id: "non-iit-5",
+    name: "Dr. Prakash Narayan",
+    institution: "VIT Vellore",
+    department: "chemical",
+    departmentId: "chemical",
+    imageUrl: "https://source.unsplash.com/random/300x300/?professor,man,32",
+    hIndex: 23,
+    i10Index: 47,
+    publications: 112,
+    citations: 2954,
+    bio: "Dr. Prakash Narayan is a Professor at the Department of Chemical Engineering, VIT Vellore. His research focuses on process modeling and simulation.",
+    researchInterests: ["Process Modeling", "Simulation", "Chemical Reaction Engineering", "Process Control"]
   }
 ];
 
@@ -479,11 +912,11 @@ export const getProfessorsByCategory = (category: string) => {
 export const getAllProfessorsByDepartment = (departmentId: string) => {
   const baseProfessors = professors.filter(prof => prof.department === departmentId);
   
-  if (baseProfessors.length < 25) {
+  if (baseProfessors.length < 50) {
     const expandedProfessors = [...baseProfessors];
     let idCounter = 1;
     
-    while (expandedProfessors.length < 25) {
+    while (expandedProfessors.length < 50) {
       const origIndex = (expandedProfessors.length - baseProfessors.length) % baseProfessors.length;
       const profToClone = baseProfessors[origIndex];
       

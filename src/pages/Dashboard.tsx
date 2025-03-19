@@ -13,8 +13,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 interface FeatureCardProps {
@@ -41,7 +39,7 @@ const FeatureCard = ({ title, description, icon, onClick, carouselItems }: Featu
         </div>
       </div>
       
-      <Carousel className="w-full">
+      <Carousel className="w-full" opts={{ loop: true, align: "start", duration: 10 }}>
         <CarouselContent>
           {carouselItems.map((item, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
@@ -53,8 +51,6 @@ const FeatureCard = ({ title, description, icon, onClick, carouselItems }: Featu
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-2" />
-        <CarouselNext className="absolute right-2" />
       </Carousel>
     </div>
   );
@@ -68,6 +64,26 @@ const Dashboard = () => {
     document.body.style.paddingTop = '72px';
     return () => {
       document.body.style.paddingTop = '0';
+    };
+  }, []);
+  
+  // Set up auto-rotation for carousels
+  useEffect(() => {
+    const emblaNodes = document.querySelectorAll('.embla__container');
+    if (!emblaNodes.length) return;
+    
+    const carouselIntervals = Array.from(emblaNodes).map((node, index) => {
+      return setInterval(() => {
+        const embla = node as HTMLElement;
+        if (embla.parentElement) {
+          const scrollAmount = embla.parentElement.clientWidth * 0.33;
+          embla.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }, 5000 + (index * 1000)); // Stagger the intervals
+    });
+    
+    return () => {
+      carouselIntervals.forEach(interval => clearInterval(interval));
     };
   }, []);
   
