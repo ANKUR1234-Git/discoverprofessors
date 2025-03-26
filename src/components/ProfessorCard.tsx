@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Professor } from '@/utils/professorData';
 import { ProfessorModal } from './ProfessorModal';
 import { Award, BookOpen, Users } from 'lucide-react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 interface ProfessorCardProps {
   professor: Professor;
@@ -16,26 +17,28 @@ export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardPro
   
   if (isShowAll) {
     return (
-      <div 
-        className="professor-card card-hover h-80 rounded-xl bg-secondary/30 flex flex-col items-center justify-center cursor-pointer"
+      <Card 
+        className="professor-card card-hover h-80 bg-secondary/30 flex flex-col items-center justify-center cursor-pointer"
         onClick={() => navigate(`/department/${professor.collegeOrCompany}`)}
       >
-        <div className="relative w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
-          <span className="text-2xl font-bold text-primary">+</span>
-        </div>
-        <h3 className="text-lg font-semibold text-center">Show All</h3>
-        <p className="text-sm text-gray-400 text-center mt-2">View all professors in this domain</p>
-      </div>
+        <CardContent className="pt-6 flex flex-col items-center justify-center h-full">
+          <div className="relative w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+            <span className="text-2xl font-bold text-primary">+</span>
+          </div>
+          <h3 className="text-lg font-semibold text-center">Show All</h3>
+          <p className="text-sm text-gray-400 text-center mt-2">View all professors in this domain</p>
+        </CardContent>
+      </Card>
     );
   }
   
   return (
     <>
-      <div 
-        className="professor-card card-hover h-80 rounded-xl overflow-hidden relative"
+      <Card 
+        className="professor-card card-hover h-80 overflow-hidden relative"
         onClick={() => setIsModalOpen(true)}
       >
-        <div className="w-full h-full bg-secondary/40 p-6">
+        <CardContent className="p-6 bg-secondary/40 h-full">
           <div className="h-full flex flex-col">
             <h3 className="text-xl font-semibold truncate">{professor.name}</h3>
             <p className="text-sm text-gray-300 truncate mb-4">{professor.affiliation}</p>
@@ -64,8 +67,8 @@ export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardPro
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
       
       <ProfessorModal 
         isOpen={isModalOpen} 

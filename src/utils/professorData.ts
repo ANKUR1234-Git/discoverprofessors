@@ -1,3 +1,6 @@
+
+import { supabase } from "@/integrations/supabase/client";
+
 export interface Professor {
   name: string;
   affiliation: string;
@@ -69,33 +72,35 @@ export const departments: Department[] = [
   }
 ];
 
+// Function to fetch professors data from Supabase
 export const fetchProfessorsData = async (): Promise<Professor[]> => {
   try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/professors`, {
-      method: "GET",
-      headers: {
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Content-Type": "application/json"
-      }
-    });
+    const { data, error } = await supabase
+      .from('Professors')
+      .select('*');
 
-    if (!response.ok) {
-      console.error("Failed to fetch professors data:", await response.text());
+    if (error) {
+      console.error("Error fetching professors data:", error);
       return professors; // Return static data as fallback
     }
 
-    const data = await response.json();
-    return data.map((prof: any) => ({
-      name: prof.name || "Unknown",
-      affiliation: prof.affiliation || prof.institution || "Unknown",
-      hIndex: prof.hIndex || 0,
-      i10Index: prof.i10Index || 0,
-      citations: prof.citations || 0,
-      collegeOrCompany: prof.collegeOrCompany || prof.institution || prof.affiliation || "Unknown",
-      researchInterest1: prof.researchInterest1 || (prof.researchInterests && prof.researchInterests[0]) || "General Research",
-      researchInterest2: prof.researchInterest2 || (prof.researchInterests && prof.researchInterests[1]) || "Academic Studies",
-      bio: prof.bio || "No biography available."
+    if (!data || data.length === 0) {
+      console.warn("No professors found in Supabase, using static data");
+      return professors;
+    }
+
+    // Map the Supabase data to our Professor interface
+    return data.map((prof) => ({
+      name: prof.Name || "Unknown",
+      affiliation: prof.Affiliation || "Unknown",
+      hIndex: parseInt(prof["h-index"] || "0", 10),
+      i10Index: parseInt(prof["i10-index"] || "0", 10),
+      citations: parseInt(prof.Citations || "0", 10),
+      collegeOrCompany: prof["College/Company"] || prof.Affiliation || "Unknown",
+      researchInterest1: prof["Research Interest 1"] || "General Research",
+      researchInterest2: prof["Research Interest 2"] || "Academic Studies",
+      bio: "Professor at " + (prof.Affiliation || "an academic institution") + " specializing in " + 
+           (prof["Research Interest 1"] || "academic research") + "."
     }));
   } catch (error) {
     console.error("Error fetching professors data:", error);
@@ -103,6 +108,7 @@ export const fetchProfessorsData = async (): Promise<Professor[]> => {
   }
 };
 
+// Static professors data (fallback if Supabase fetch fails)
 export const professors: Professor[] = [
   // Computer Science
   {
@@ -717,7 +723,3 @@ export const getProfessorsByCategory = (category: string) => {
       return [];
   }
 };
-
-export const SUPABASE_URL = "https://dxrqbmifotfshfkbgkbf.supabase.co";
-export const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cnFibWlmb3Rmc2hma2Jna2JmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI5OTE1NTIsImV4cCI6MjA1ODU2NzU1Mn0.2ArEqX8DzBMtCddwSvRLM1UMn-Q7kQizAvsJO5wNqvQ";
-
