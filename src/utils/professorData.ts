@@ -75,6 +75,7 @@ export const departments: Department[] = [
 // Function to fetch professors data from Supabase
 export const fetchProfessorsData = async (): Promise<Professor[]> => {
   try {
+    console.log("Fetching professors from Supabase...");
     const { data, error } = await supabase
       .from('Professors')
       .select('*');
@@ -83,6 +84,8 @@ export const fetchProfessorsData = async (): Promise<Professor[]> => {
       console.error("Error fetching professors data:", error);
       return professors; // Return static data as fallback
     }
+
+    console.log("Supabase professors data:", data);
 
     if (!data || data.length === 0) {
       console.warn("No professors found in Supabase, using static data");
