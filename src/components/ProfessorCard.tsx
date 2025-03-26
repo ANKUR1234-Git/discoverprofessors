@@ -18,7 +18,7 @@ export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardPro
     return (
       <div 
         className="professor-card card-hover h-80 rounded-xl bg-secondary/30 flex flex-col items-center justify-center cursor-pointer"
-        onClick={() => navigate(`/department/${professor.departmentId}`)}
+        onClick={() => navigate(`/department/${professor.collegeOrCompany}`)}
       >
         <div className="relative w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
           <span className="text-2xl font-bold text-primary">+</span>

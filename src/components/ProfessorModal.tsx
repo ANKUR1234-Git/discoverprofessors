@@ -30,8 +30,9 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
         if (i10IndexRef.current) {
           animateNumber(i10IndexRef.current, 0, professor.i10Index);
         }
-        if (publicationsRef.current && 'publications' in professor) {
-          animateNumber(publicationsRef.current, 0, professor.publications);
+        // We don't have publications in our model anymore, using citations as a fallback
+        if (publicationsRef.current) {
+          animateNumber(publicationsRef.current, 0, professor.citations);
         }
       }, 300);
     }

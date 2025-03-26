@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { ProfessorCard } from '@/components/ProfessorCard';
-import { getAllProfessorsByDepartment, departments } from '@/utils/professorData';
+import { getAllProfessorsByDepartment, departments, fetchProfessorsData } from '@/utils/professorData';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -17,13 +17,32 @@ const GridView = () => {
     // Add padding to body for fixed navbar
     document.body.style.paddingTop = '72px';
     
-    if (departmentId) {
-      const allProfessors = getAllProfessorsByDepartment(departmentId);
-      setProfessors(allProfessors);
-    }
-    
-    // Reset scroll position to top
+    // Reset scroll position to top when the component mounts
     window.scrollTo(0, 0);
+    
+    if (departmentId) {
+      // First use static data
+      const staticProfessors = getAllProfessorsByDepartment(departmentId);
+      setProfessors(staticProfessors);
+      
+      // Try to fetch from Supabase
+      const fetchData = async () => {
+        try {
+          const fetchedProfessors = await fetchProfessorsData();
+          const filteredProfessors = fetchedProfessors
+            .filter(prof => prof.collegeOrCompany === departmentId)
+            .sort((a, b) => b.citations - a.citations);
+          
+          if (filteredProfessors.length > 0) {
+            setProfessors(filteredProfessors);
+          }
+        } catch (error) {
+          console.error("Error fetching department professors:", error);
+        }
+      };
+      
+      fetchData();
+    }
     
     return () => {
       document.body.style.paddingTop = '0';
@@ -65,8 +84,8 @@ const GridView = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {professors.map((professor) => (
-            <div key={professor.id}>
+          {professors.map((professor, index) => (
+            <div key={`${professor.name}-${index}`}>
               <ProfessorCard professor={professor} />
             </div>
           ))}

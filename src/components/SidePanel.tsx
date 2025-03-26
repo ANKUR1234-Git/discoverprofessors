@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { getProfessorsByCategory } from '@/utils/professorData';
+import { getProfessorsByCategory, fetchProfessorsData } from '@/utils/professorData';
 import { ProfessorModal } from './ProfessorModal';
 import type { Professor } from '@/utils/professorData';
 import { staggeredEntrance } from '@/utils/animations';
@@ -42,8 +42,51 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
 
   useEffect(() => {
     if (isOpen && category) {
-      const filteredProfessors = getProfessorsByCategory(category);
-      setProfessors(filteredProfessors);
+      // First use static data
+      const staticProfessors = getProfessorsByCategory(category);
+      setProfessors(staticProfessors);
+      
+      // Try to fetch from Supabase
+      const fetchData = async () => {
+        try {
+          const fetchedProfessors = await fetchProfessorsData();
+          let filteredProfessors: Professor[] = [];
+          
+          switch(category.toLowerCase()) {
+            case 'citations':
+              filteredProfessors = [...fetchedProfessors].sort((a, b) => b.citations - a.citations).slice(0, 10);
+              break;
+            case 'i10-index':
+              filteredProfessors = [...fetchedProfessors].sort((a, b) => b.i10Index - a.i10Index).slice(0, 10);
+              break;
+            case 'publications':
+              filteredProfessors = [...fetchedProfessors].sort((a, b) => b.citations - a.citations).slice(0, 10);
+              break;
+            case 'iits':
+              filteredProfessors = [...fetchedProfessors]
+                .filter(prof => prof.affiliation.toLowerCase().includes('iit'))
+                .sort((a, b) => b.citations - a.citations)
+                .slice(0, 10);
+              break;
+            case 'non-iits':
+              filteredProfessors = [...fetchedProfessors]
+                .filter(prof => !prof.affiliation.toLowerCase().includes('iit'))
+                .sort((a, b) => b.citations - a.citations)
+                .slice(0, 10);
+              break;
+            default:
+              filteredProfessors = [];
+          }
+          
+          if (filteredProfessors.length > 0) {
+            setProfessors(filteredProfessors);
+          }
+        } catch (error) {
+          console.error("Error fetching professors by category:", error);
+        }
+      };
+      
+      fetchData();
       
       // Apply staggered entrance animation after a short delay
       setTimeout(() => {
@@ -101,9 +144,9 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
         <div className="flex-1 overflow-y-auto p-4">
           {professors.length > 0 ? (
             <ul className="space-y-3">
-              {professors.map((professor) => (
+              {professors.map((professor, index) => (
                 <li 
-                  key={professor.id}
+                  key={`${professor.name}-${index}`}
                   className="professor-list-item bg-secondary/60 rounded-lg p-4 hover:bg-secondary/80 transition-colors cursor-pointer opacity-0"
                   onClick={() => handleProfessorClick(professor)}
                 >
