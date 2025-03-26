@@ -115,7 +115,7 @@ export const SidePanel = ({ isOpen, onClose, category }: SidePanelProps) => {
                     </Avatar>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-base font-medium truncate">{professor.name}</h3>
-                      <p className="text-sm text-gray-400 truncate">{professor.institution}</p>
+                      <p className="text-sm text-gray-400 truncate">{professor.affiliation}</p>
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-primary font-semibold">{professor.citations.toLocaleString()}</div>

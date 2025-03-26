@@ -24,7 +24,7 @@ export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardPro
           <span className="text-2xl font-bold text-primary">+</span>
         </div>
         <h3 className="text-lg font-semibold text-center">Show All</h3>
-        <p className="text-sm text-gray-400 text-center mt-2">View all professors in this department</p>
+        <p className="text-sm text-gray-400 text-center mt-2">View all professors in this domain</p>
       </div>
     );
   }
@@ -38,23 +38,19 @@ export const ProfessorCard = ({ professor, isShowAll = false }: ProfessorCardPro
         <div className="w-full h-full bg-secondary/40 p-6">
           <div className="h-full flex flex-col">
             <h3 className="text-xl font-semibold truncate">{professor.name}</h3>
-            <p className="text-sm text-gray-300 truncate mb-4">{professor.institution}</p>
+            <p className="text-sm text-gray-300 truncate mb-4">{professor.affiliation}</p>
             
             <div className="flex items-center gap-2 mt-2 mb-1">
               <Award className="h-4 w-4 text-primary" />
-              <span className="text-sm text-gray-300">Research Focus:</span>
+              <span className="text-sm text-gray-300">Research Interests:</span>
             </div>
             <div className="flex flex-wrap gap-1 mb-auto">
-              {professor.researchInterests.slice(0, 3).map((interest, index) => (
-                <span key={index} className="text-xs bg-primary/10 px-2 py-1 rounded-full">
-                  {interest}
-                </span>
-              ))}
-              {professor.researchInterests.length > 3 && (
-                <span className="text-xs bg-primary/10 px-2 py-1 rounded-full">
-                  +{professor.researchInterests.length - 3} more
-                </span>
-              )}
+              <span className="text-xs bg-primary/10 px-2 py-1 rounded-full">
+                {professor.researchInterest1}
+              </span>
+              <span className="text-xs bg-primary/10 px-2 py-1 rounded-full">
+                {professor.researchInterest2}
+              </span>
             </div>
             
             <div className="mt-auto grid grid-cols-2 gap-4">

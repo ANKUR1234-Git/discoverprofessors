@@ -30,7 +30,7 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
         if (i10IndexRef.current) {
           animateNumber(i10IndexRef.current, 0, professor.i10Index);
         }
-        if (publicationsRef.current) {
+        if (publicationsRef.current && 'publications' in professor) {
           animateNumber(publicationsRef.current, 0, professor.publications);
         }
       }, 300);
@@ -52,7 +52,7 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
               {/* Institution and Contact */}
               <div className="flex items-center space-x-2 mb-4">
                 <Building className="h-4 w-4 text-primary" />
-                <span className="text-sm">{professor.institution}</span>
+                <span className="text-sm">{professor.affiliation}</span>
               </div>
               
               {/* Metrics */}
@@ -99,14 +99,12 @@ export const ProfessorModal = ({ isOpen, onClose, professor }: ProfessorModalPro
                   Research Interests
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {professor.researchInterests.map((interest, index) => (
-                    <span 
-                      key={index}
-                      className="bg-secondary/60 rounded-full px-3 py-1 text-sm"
-                    >
-                      {interest}
-                    </span>
-                  ))}
+                  <span className="bg-secondary/60 rounded-full px-3 py-1 text-sm">
+                    {professor.researchInterest1}
+                  </span>
+                  <span className="bg-secondary/60 rounded-full px-3 py-1 text-sm">
+                    {professor.researchInterest2}
+                  </span>
                 </div>
               </div>
               

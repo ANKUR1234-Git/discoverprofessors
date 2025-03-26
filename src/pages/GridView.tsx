@@ -61,7 +61,7 @@ const GridView = () => {
             <ArrowLeft className="h-5 w-5 mr-1" />
             Back
           </Button>
-          <h1 className="text-3xl font-bold">{department?.name || 'All'} Professors</h1>
+          <h1 className="text-3xl font-bold">{department?.name || 'All'} Domain Professors</h1>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">

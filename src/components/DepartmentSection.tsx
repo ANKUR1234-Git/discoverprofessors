@@ -36,7 +36,7 @@ export const DepartmentSection = ({ department }: DepartmentSectionProps) => {
     <section className="department-section py-12 bg-secondary/20 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{department.name}</h2>
+          <h2 className="text-2xl font-bold">{department.name} Domain</h2>
           {!isMobile && (
             <div className="flex space-x-2">
               <button 
