@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { HeroCarousel } from '@/components/HeroCarousel';
@@ -24,34 +24,6 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, icon, onClick, carouselItems }: FeatureCardProps) => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    // Manual carousel autoplay implementation
-    let currentIndex = 0;
-    const itemCount = carouselItems.length;
-    
-    if (!carouselRef.current) return;
-    
-    const interval = setInterval(() => {
-      if (!carouselRef.current) return;
-      
-      currentIndex = (currentIndex + 1) % itemCount;
-      const container = carouselRef.current.querySelector('.embla__container') as HTMLElement;
-      if (!container) return;
-      
-      const itemWidth = container.children[0]?.clientWidth || 0;
-      const scrollPosition = currentIndex * itemWidth;
-      
-      container.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      });
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, [carouselItems.length]);
-  
   return (
     <div className="bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-xl p-6 hover:bg-secondary/30 transition-all duration-300">
       <div className="flex flex-col md:flex-row gap-6 mb-6">
@@ -67,21 +39,19 @@ const FeatureCard = ({ title, description, icon, onClick, carouselItems }: Featu
         </div>
       </div>
       
-      <div ref={carouselRef}>
-        <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
-          <CarouselContent>
-            {carouselItems.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 h-full border border-white/10">
-                    <p className="text-sm">{item}</p>
-                  </div>
+      <Carousel className="w-full" opts={{ loop: true, align: "start", duration: 10 }}>
+        <CarouselContent>
+          {carouselItems.map((item, index) => (
+            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              <div className="p-1">
+                <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 h-full border border-white/10">
+                  <p className="text-sm">{item}</p>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 };
@@ -92,12 +62,33 @@ const Dashboard = () => {
   // Add padding to body for fixed navbar
   useEffect(() => {
     document.body.style.paddingTop = '72px';
-    
-    // Reset scroll position to top
-    window.scrollTo(0, 0);
-    
     return () => {
       document.body.style.paddingTop = '0';
+    };
+  }, []);
+  
+  // Set up auto-rotation for carousels
+  useEffect(() => {
+    const emblaNodes = document.querySelectorAll('.embla__container');
+    if (!emblaNodes.length) return;
+    
+    const carouselIntervals = Array.from(emblaNodes).map((node, index) => {
+      return setInterval(() => {
+        const embla = node as HTMLElement;
+        if (embla && embla.parentElement) {
+          const scrollAmount = embla.parentElement.clientWidth * 0.33;
+          embla.scrollLeft += scrollAmount;
+          
+          // If near the end, reset to start
+          if (embla.scrollLeft > (embla.scrollWidth - embla.parentElement.clientWidth - 100)) {
+            embla.scrollLeft = 0;
+          }
+        }
+      }, 5000 + (index * 1000)); // Stagger the intervals
+    });
+    
+    return () => {
+      carouselIntervals.forEach(interval => clearInterval(interval));
     };
   }, []);
   
@@ -125,12 +116,6 @@ const Dashboard = () => {
     "Find underappreciated gems with growing impact"
   ];
   
-  const handleAnalysisNavigation = (type: string) => {
-    navigate(`/analysis/${type}`);
-    // Reset scroll position when navigating
-    window.scrollTo(0, 0);
-  };
-  
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       {/* Global Background Image */}
@@ -157,7 +142,7 @@ const Dashboard = () => {
               title="Track Citations"
               description="Monitor and analyze citation metrics for your research and publications."
               icon={<ActivityIcon className="w-8 h-8 text-primary" />}
-              onClick={() => handleAnalysisNavigation('citations')}
+              onClick={() => navigate('/analysis/citations')}
               carouselItems={trackCitationsCarousel}
             />
             
@@ -165,7 +150,7 @@ const Dashboard = () => {
               title="Analyze Trends"
               description="Identify emerging research themes and visualization patterns in academic publications."
               icon={<TrendingUpIcon className="w-8 h-8 text-primary" />}
-              onClick={() => handleAnalysisNavigation('trends')}
+              onClick={() => navigate('/analysis/trends')}
               carouselItems={analyzeTrendsCarousel}
             />
             
@@ -173,7 +158,7 @@ const Dashboard = () => {
               title="Discover Influential Papers"
               description="Find and explore the most impactful publications in your field of interest."
               icon={<BookIcon className="w-8 h-8 text-primary" />}
-              onClick={() => handleAnalysisNavigation('papers')}
+              onClick={() => navigate('/analysis/papers')}
               carouselItems={discoverPapersCarousel}
             />
           </div>
